@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curated 450+ DSA problem sheet organized topic-wise. Track your progress and crack any coding interview on Job Portal.">
+  <title>DSA Sheet — Job Portal</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('portal_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dsa.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-blur-1"></div>
+  <div class="bg-blur-2"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><div class="logo-icon">💼</div><span>Job Portal</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="jobs.html">💼 Jobs</a></li>
+        <li><a href="preparation.html">📚 Preparation</a></li>
+        <li><a href="companies.html">🏢 Companies</a></li>
+        <li><a href="dsa-sheet.html" class="active">🧩 DSA Sheet</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <span class="theme-toggle-icon">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Sign In coming soon!','info')">Sign In</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Registration coming soon!','info')">Get Started</button>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a><a href="jobs.html">💼 Jobs</a>
+    <a href="preparation.html">📚 Preparation</a><a href="companies.html">🏢 Companies</a><a href="dsa-sheet.html">🧩 DSA Sheet</a>
+    <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
+      <span style="color:var(--text-secondary);font-size:0.875rem;font-weight:500;">Appearance</span>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="page-wrapper">
+    <!-- DSA HEADER -->
+    <div class="dsa-header">
+      <div class="container">
+        <div class="dsa-hero">
+          <div>
+            <div class="section-label">🧩 DSA Sheet</div>
+            <h1 class="section-title">Topic-wise <span class="highlight">DSA Practice Sheet</span></h1>
+            <p class="section-subtitle">450+ handpicked problems from LeetCode, GFG & Codeforces — organized by topic for systematic interview preparation.</p>
+            <div class="dsa-actions mt-4">
+              <button class="btn btn-primary" onclick="resetProgress()">🔄 Reset Progress</button>
+              <button class="btn btn-secondary" onclick="showStats()">📊 View Stats</button>
+              <button class="btn btn-ghost btn-sm" onclick="filterDifficulty('hard',null)">🔥 Hard only</button>
+            </div>
+          </div>
+          <div class="dsa-progress-circle">
+            <svg class="progress-ring" width="160" height="160">
+              <circle class="progress-ring-bg" cx="80" cy="80" r="66" stroke-dasharray="414.69" stroke-dashoffset="0"/>
+              <circle class="progress-ring-fill" id="progressRingFill" cx="80" cy="80" r="66" stroke-dasharray="414.69" stroke-dashoffset="414.69"/>
+            </svg>
+            <div class="progress-center">
+              <div class="progress-num" id="progressNum">0</div>
+              <div class="progress-total" id="progressTotal">/ 450</div>
+              <div class="progress-label">Solved</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MINI STATS -->
+        <div class="dsa-mini-stats">
+          <div class="mini-stat"><span class="mini-stat-val" style="color:var(--accent-green);" id="easySolved">0</span><span class="mini-stat-label">Easy</span></div>
+          <div class="mini-stat-div"></div>
+          <div class="mini-stat"><span class="mini-stat-val" style="color:var(--accent-orange);" id="mediumSolved">0</span><span class="mini-stat-label">Medium</span></div>
+          <div class="mini-stat-div"></div>
+          <div class="mini-stat"><span class="mini-stat-val" style="color:var(--accent-secondary);" id="hardSolved">0</span><span class="mini-stat-label">Hard</span></div>
+          <div class="mini-stat-div"></div>
+          <div class="mini-stat"><span class="mini-stat-val" style="color:var(--accent-purple);" id="pctSolved">0%</span><span class="mini-stat-label">Complete</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLS BAR -->
+    <div class="dsa-controls-bar">
+      <div class="container">
+        <div class="dsa-controls">
+          <div class="search-bar" style="flex:1;max-width:350px;">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="dsaSearch" placeholder="Search problems..." oninput="searchProblems()">
+          </div>
+          <div class="filter-chips" id="diffFilter">
+            <span class="chip active" onclick="filterDifficulty('all',this)">All</span>
+            <span class="chip" onclick="filterDifficulty('easy',this)">🟢 Easy</span>
+            <span class="chip" onclick="filterDifficulty('medium',this)">🟡 Medium</span>
+            <span class="chip" onclick="filterDifficulty('hard',this)">🔴 Hard</span>
+          </div>
+          <div class="filter-chips">
+            <span class="chip active" id="showAll" onclick="filterSolved('all',this)">All</span>
+            <span class="chip" onclick="filterSolved('unsolved',this)">Unsolved</span>
+            <span class="chip" onclick="filterSolved('solved',this)">Solved ✅</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DSA SHEET MAIN -->
+    <div class="container dsa-main">
+      <div class="dsa-sidebar-layout">
+        <!-- TOPIC SIDEBAR -->
+        <div class="dsa-sidebar">
+          <div class="sidebar-card" style="background:var(--bg-card);">
+            <div class="sidebar-title">📚 Topics</div>
+            <div id="topicSidebarList"></div>
+          </div>
+        </div>
+
+        <!-- PROBLEMS AREA -->
+        <div class="dsa-content" id="dsaContent"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- NOTES MODAL -->
+  <div class="modal-overlay" id="notesModal">
+    <div class="modal" style="max-width:650px;">
+      <div id="notesModalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js"></script>
+  <script src="dsa.js"></script>
+</body>
+</html>

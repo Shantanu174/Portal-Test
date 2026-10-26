@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive interview preparation for Aptitude, DSA, Technical, and HR rounds with notes, practice problems, and expert tips on Job Portal.">
+  <title>Interview Preparation — Job Portal</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('portal_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="prep.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-blur-1"></div>
+  <div class="bg-blur-2"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><div class="logo-icon">💼</div><span>Job Portal</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="jobs.html">💼 Jobs</a></li>
+        <li><a href="preparation.html" class="active">📚 Preparation</a></li>
+        <li><a href="companies.html">🏢 Companies</a></li>
+        <li><a href="dsa-sheet.html">🧩 DSA Sheet</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <span class="theme-toggle-icon">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Sign In coming soon!','info')">Sign In</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Registration coming soon!','info')">Get Started</button>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a><a href="jobs.html">💼 Jobs</a>
+    <a href="preparation.html">📚 Preparation</a><a href="companies.html">🏢 Companies</a><a href="dsa-sheet.html">🧩 DSA Sheet</a>
+    <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
+      <span style="color:var(--text-secondary);font-size:0.875rem;font-weight:500;">Appearance</span>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="page-wrapper">
+    <!-- HEADER -->
+    <div class="prep-header">
+      <div class="container">
+        <div class="section-label">📚 Interview Prep</div>
+        <h1 class="section-title">Master Every <span class="highlight">Interview Round</span></h1>
+        <p class="section-subtitle">Structured notes and practice problems for Aptitude, DSA, Technical, and HR rounds — curated by experts who've been through top company interviews.</p>
+
+        <!-- OVERVIEW STATS -->
+        <div class="prep-overview">
+          <div class="overview-stat">
+            <div class="overview-num" style="color:var(--accent-primary);">500+</div>
+            <div class="overview-label">Aptitude Problems</div>
+          </div>
+          <div class="overview-stat">
+            <div class="overview-num" style="color:var(--accent-teal);">450+</div>
+            <div class="overview-label">DSA Problems</div>
+          </div>
+          <div class="overview-stat">
+            <div class="overview-num" style="color:var(--accent-blue);">200+</div>
+            <div class="overview-label">Tech Topics</div>
+          </div>
+          <div class="overview-stat">
+            <div class="overview-num" style="color:var(--accent-pink);">100+</div>
+            <div class="overview-label">HR Questions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="prep-tabs-nav" id="prepTabsNav">
+      <div class="container">
+        <div class="prep-tabs">
+          <button class="prep-tab-btn active" data-tab="aptitude" onclick="switchTab('aptitude',this)">
+            <span class="tab-icon">🔢</span> Aptitude
+          </button>
+          <button class="prep-tab-btn" data-tab="dsa" onclick="switchTab('dsa',this)">
+            <span class="tab-icon">⚙️</span> DSA
+          </button>
+          <button class="prep-tab-btn" data-tab="technical" onclick="switchTab('technical',this)">
+            <span class="tab-icon">💻</span> Technical
+          </button>
+          <button class="prep-tab-btn" data-tab="hr" onclick="switchTab('hr',this)">
+            <span class="tab-icon">🤝</span> HR Round
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="padding:2rem 2rem 4rem;">
+      <!-- ====== APTITUDE TAB ====== -->
+      <div id="tab-aptitude" class="tab-content">
+        <div class="prep-layout">
+          <aside class="prep-sidebar">
+            <div class="sidebar-card" style="background:var(--bg-card);">
+              <div class="sidebar-title">📑 Topics</div>
+              <div class="topic-nav" id="aptTopicNav"></div>
+            </div>
+            <div class="sidebar-card mt-4" style="background:var(--bg-card);">
+              <div class="sidebar-title">📈 Your Progress</div>
+              <div class="progress-stats" id="aptProgressStats"></div>
+            </div>
+          </aside>
+          <div>
+            <div class="prep-search mb-6">
+              <div class="search-bar"><span class="search-icon">🔍</span><input type="text" placeholder="Search aptitude topics..." id="aptSearch" oninput="searchTopics('apt')"></div>
+              <div class="filter-chips">
+                <span class="chip active" onclick="filterApt('all',this)">All</span>
+                <span class="chip" onclick="filterApt('quantitative',this)">Quantitative</span>
+                <span class="chip" onclick="filterApt('logical',this)">Logical</span>
+                <span class="chip" onclick="filterApt('verbal',this)">Verbal</span>
+                <span class="chip" onclick="filterApt('di',this)">Data Interpretation</span>
+              </div>
+            </div>
+            <div class="topics-grid" id="aptTopicsGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== DSA TAB ====== -->
+      <div id="tab-dsa" class="tab-content hidden">
+        <div class="prep-layout">
+          <aside class="prep-sidebar">
+            <div class="sidebar-card" style="background:var(--bg-card);">
+              <div class="sidebar-title">🧩 Topics</div>
+              <div class="topic-nav" id="dsaTopicNav"></div>
+            </div>
+          </aside>
+          <div>
+            <div class="prep-search mb-6">
+              <div class="search-bar"><span class="search-icon">🔍</span><input type="text" placeholder="Search DSA topics..." id="dsaSearch" oninput="searchTopics('dsa')"></div>
+              <div class="filter-chips">
+                <span class="chip active" onclick="filterDsa('all',this)">All</span>
+                <span class="chip" onclick="filterDsa('data-structures',this)">Data Structures</span>
+                <span class="chip" onclick="filterDsa('algorithms',this)">Algorithms</span>
+                <span class="chip" onclick="filterDsa('advanced',this)">Advanced</span>
+              </div>
+            </div>
+            <div class="topics-grid" id="dsaTopicsGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== TECHNICAL TAB ====== -->
+      <div id="tab-technical" class="tab-content hidden">
+        <div class="prep-layout">
+          <aside class="prep-sidebar">
+            <div class="sidebar-card" style="background:var(--bg-card);">
+              <div class="sidebar-title">💻 Subjects</div>
+              <div class="topic-nav" id="techTopicNav"></div>
+            </div>
+          </aside>
+          <div>
+            <div class="prep-search mb-6">
+              <div class="search-bar"><span class="search-icon">🔍</span><input type="text" placeholder="Search technical topics..." id="techSearch"></div>
+              <div class="filter-chips">
+                <span class="chip active">All</span>
+                <span class="chip">Core CS</span>
+                <span class="chip">Web Dev</span>
+                <span class="chip">Database</span>
+                <span class="chip">System Design</span>
+              </div>
+            </div>
+            <div class="topics-grid" id="techTopicsGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== HR TAB ====== -->
+      <div id="tab-hr" class="tab-content hidden">
+        <div class="hr-intro-banner">
+          <div class="hr-intro-icon">🤝</div>
+          <div>
+            <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;">Crack the HR Round</h3>
+            <p style="color:var(--text-secondary);font-size:0.875rem;">Master behavioral questions, salary negotiation, and professional communication to leave a lasting impression.</p>
+          </div>
+        </div>
+        <div class="grid-2 mb-6">
+          <div class="hr-stat-card">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🎯</div>
+            <div style="font-size:1.5rem;font-weight:800;color:var(--accent-pink);">100+</div>
+            <div style="font-size:0.875rem;color:var(--text-muted);">Common HR Questions</div>
+          </div>
+          <div class="hr-stat-card">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">💡</div>
+            <div style="font-size:1.5rem;font-weight:800;color:var(--accent-orange);">STAR</div>
+            <div style="font-size:0.875rem;color:var(--text-muted);">Answer Framework</div>
+          </div>
+        </div>
+        <div id="hrContent"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOPIC DETAIL MODAL -->
+  <div class="modal-overlay" id="topicModal">
+    <div class="modal" style="max-width:800px;max-height:88vh;">
+      <div id="topicModalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js"></script>
+  <script src="prep.js"></script>
+</body>
+</html>

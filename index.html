@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Job Portal - Your all-in-one platform for job opportunities, interview preparation, DSA sheets, and company hiring guides.">
+  <title>Job Portal</title>
+  <script>
+    (function () {
+      const t = localStorage.getItem('portal_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-blur-1"></div>
+  <div class="bg-blur-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">💼</div>
+        <span>Job Portal</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">🏠 Home</a></li>
+        <li><a href="jobs.html">💼 Jobs</a></li>
+        <li><a href="preparation.html">📚 Preparation</a></li>
+        <li><a href="companies.html">🏢 Companies</a></li>
+        <li><a href="dsa-sheet.html">🧩 DSA Sheet</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <span class="theme-toggle-icon">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Sign In coming soon!','info')">Sign In</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Registration coming soon!','info')">Get
+          Started</button>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="jobs.html">💼 Jobs</a>
+    <a href="preparation.html">📚 Preparation</a>
+    <a href="companies.html">🏢 Companies</a>
+    <a href="dsa-sheet.html">🧩 DSA Sheet</a>
+    <div
+      style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
+      <span style="color:var(--text-secondary);font-size:0.875rem;font-weight:500;">Appearance</span>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="container" style="position:relative;z-index:1;">
+        <div class="hero-badge animate-fadeInUp">
+          ✨ Your Ultimate Career Launchpad
+        </div>
+        <h1 class="hero-title">
+          Land Your Dream Job<br>
+          <span class="gradient-text">Faster Than Ever</span>
+        </h1>
+        <p class="hero-subtitle animate-fadeInUp delay-2">
+          All-in-one platform for job discovery, DSA prep, aptitude training, HR guidance, and company-specific hiring
+          insights — everything you need to crack your dream interview.
+        </p>
+        <div class="hero-actions animate-fadeInUp delay-3"
+          style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="jobs.html" class="btn btn-primary btn-lg">💼 Browse Jobs <span
+              style="opacity:0.7;font-size:0.9em;">→</span></a>
+          <a href="dsa-sheet.html" class="btn btn-secondary btn-lg">🧩 Start DSA Sheet</a>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats animate-fadeInUp delay-4">
+          <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Jobs Listed</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">450+</div>
+            <div class="stat-label">DSA Problems</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating cards decoration -->
+      <div class="floating-card fc-1 animate-float">
+        <div class="fc-icon">🎯</div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:600;">Google SWE</div>
+          <div style="font-size:0.65rem;color:var(--text-muted);">₹45 LPA · Remote</div>
+        </div>
+      </div>
+      <div class="floating-card fc-2 animate-float delay-2">
+        <div class="fc-icon" style="background:var(--gradient-teal);">✅</div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:600;">Problem Solved!</div>
+          <div style="font-size:0.65rem;color:var(--accent-teal);">Binary Search · Easy</div>
+        </div>
+      </div>
+      <div class="floating-card fc-3 animate-float delay-4">
+        <div class="fc-icon" style="background:var(--gradient-secondary);">🏆</div>
+        <div>
+          <div style="font-size:0.75rem;font-weight:600;">Interview Cleared!</div>
+          <div style="font-size:0.65rem;color:var(--accent-pink);">Amazon · Round 3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-8">
+          <div class="section-label">What We Offer</div>
+          <h2 class="section-title">Everything You Need to <span class="highlight">Succeed</span></h2>
+          <p class="section-subtitle" style="margin:0 auto;">From job discovery to interview prep — Job Portal has all
+            the tools to help you land your dream role.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Job Portal -->
+          <a href="jobs.html" class="feature-card">
+            <div class="feature-icon" style="background:var(--gradient-primary);">💼</div>
+            <h3>Job Portal</h3>
+            <p>Browse 50,000+ curated jobs from top tech companies. Filter by role, skills, location, and salary. Apply
+              directly.</p>
+            <div class="feature-tags">
+              <span class="tag">Full-time</span>
+              <span class="tag">Remote</span>
+              <span class="tag">Internship</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <!-- Preparation -->
+          <a href="preparation.html" class="feature-card">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#00d4aa,#00b894);">📚</div>
+            <h3>Interview Prep</h3>
+            <p>Comprehensive notes and practice problems for Aptitude, DSA, Technical, and HR rounds with expert
+              explanations.</p>
+            <div class="feature-tags">
+              <span class="tag">Aptitude</span>
+              <span class="tag">DSA</span>
+              <span class="tag">HR</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <!-- Companies -->
+          <a href="companies.html" class="feature-card">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#ff9f43,#ee5a24);">🏢</div>
+            <h3>Company Profiles</h3>
+            <p>Deep dive into hiring processes, exam patterns, syllabi, and eligibility criteria for 200+ top tech
+              companies.</p>
+            <div class="feature-tags">
+              <span class="tag">Process</span>
+              <span class="tag">Syllabus</span>
+              <span class="tag">Pattern</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <!-- DSA Sheet -->
+          <a href="dsa-sheet.html" class="feature-card">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#fd79a8,#e84393);">🧩</div>
+            <h3>DSA Sheet</h3>
+            <p>450+ handpicked DSA problems organized topic-wise. Track your progress with a structured learning path.
+            </p>
+            <div class="feature-tags">
+              <span class="tag">450+ Qs</span>
+              <span class="tag">Topic-wise</span>
+              <span class="tag">Tracker</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED JOBS -->
+    <section class="section"
+      style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+      <div class="container">
+        <div class="flex justify-between items-center mb-6" style="flex-wrap:wrap;gap:1rem;">
+          <div>
+            <div class="section-label">Hot Opportunities</div>
+            <h2 class="section-title mb-1">Featured <span class="highlight">Jobs</span></h2>
+          </div>
+          <a href="jobs.html" class="btn btn-ghost">View All Jobs →</a>
+        </div>
+        <div class="featured-jobs" id="featuredJobs"></div>
+      </div>
+    </section>
+
+    <!-- PREP TRACKS -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-8">
+          <div class="section-label">Learning Tracks</div>
+          <h2 class="section-title">Popular <span class="highlight">Prep Tracks</span></h2>
+          <p class="section-subtitle" style="margin:0 auto;">Structured learning paths to help you crack every interview
+            round.</p>
+        </div>
+        <div class="grid-4" id="prepTracks"></div>
+      </div>
+    </section>
+
+    <!-- COMPANIES PREVIEW -->
+    <section class="section"
+      style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+      <div class="container">
+        <div class="text-center mb-8">
+          <div class="section-label">Top Recruiters</div>
+          <h2 class="section-title">Companies <span class="highlight">Actively Hiring</span></h2>
+        </div>
+        <div class="companies-marquee">
+          <div class="marquee-track" id="companiesMarquee"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-section">
+          <div class="cta-glow"></div>
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div class="hero-badge" style="margin:0 auto 1.5rem;display:inline-flex;">🚀 Join 100,000+ Job Seekers</div>
+            <h2 class="section-title" style="font-size:2.5rem;">Ready to Land Your<br><span class="highlight">Dream
+                Job?</span></h2>
+            <p class="section-subtitle" style="margin:1rem auto 2rem;max-width:500px;">Start your preparation today with
+              our structured roadmaps, curated job listings, and company-specific guides.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+              <a href="preparation.html" class="btn btn-primary btn-lg">Start Preparing Now</a>
+              <a href="jobs.html" class="btn btn-secondary btn-lg">Explore Jobs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="nav-logo" style="margin-bottom:1rem;">
+            <div class="logo-icon">💼</div>
+            <span>Job Portal</span>
+          </div>
+          <p style="color:var(--text-muted);font-size:0.875rem;line-height:1.7;max-width:260px;">Your ultimate career
+            preparation platform. Land your dream job faster with structured learning and curated opportunities.</p>
+        </div>
+        <div>
+          <div
+            style="font-weight:600;margin-bottom:1rem;color:var(--text-secondary);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">
+            Platform</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a href="jobs.html"
+              style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;transition:var(--transition-fast);"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">💼
+              Job Portal</a>
+            <a href="preparation.html" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">📚
+              Preparation</a>
+            <a href="companies.html" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">🏢
+              Companies</a>
+            <a href="dsa-sheet.html" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">🧩
+              DSA Sheet</a>
+          </div>
+        </div>
+        <div>
+          <div
+            style="font-weight:600;margin-bottom:1rem;color:var(--text-secondary);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">
+            Preparation</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a href="preparation.html#aptitude" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">🔢
+              Aptitude</a>
+            <a href="preparation.html#dsa" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">⚙️
+              DSA</a>
+            <a href="preparation.html#technical"
+              style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">💻
+              Technical</a>
+            <a href="preparation.html#hr" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;"
+              onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">🤝
+              HR Round</a>
+          </div>
+        </div>
+        <div>
+          <div
+            style="font-weight:600;margin-bottom:1rem;color:var(--text-secondary);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">
+            Quick Stats</div>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span
+                style="color:var(--text-muted);font-size:0.875rem;">Jobs Listed</span><span
+                style="font-weight:700;color:var(--accent-primary);">50K+</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span
+                style="color:var(--text-muted);font-size:0.875rem;">DSA Problems</span><span
+                style="font-weight:700;color:var(--accent-teal);">450+</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span
+                style="color:var(--text-muted);font-size:0.875rem;">Companies</span><span
+                style="font-weight:700;color:var(--accent-orange);">200+</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span
+                style="color:var(--text-muted);font-size:0.875rem;">Success Rate</span><span
+                style="font-weight:700;color:var(--accent-pink);">95%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div style="color:var(--text-muted);font-size:0.82rem;">© 2026 Job Portal. Built with ❤️ for job seekers.</div>
+        <div style="display:flex;gap:1rem;">
+          <span style="color:var(--text-muted);font-size:0.82rem;cursor:pointer;"
+            onmouseover="this.style.color='var(--text-primary)'"
+            onmouseout="this.style.color='var(--text-muted)'">Privacy</span>
+          <span style="color:var(--text-muted);font-size:0.82rem;cursor:pointer;"
+            onmouseover="this.style.color='var(--text-primary)'"
+            onmouseout="this.style.color='var(--text-muted)'">Terms</span>
+          <span style="color:var(--text-muted);font-size:0.82rem;cursor:pointer;"
+            onmouseover="this.style.color='var(--text-primary)'"
+            onmouseout="this.style.color='var(--text-muted)'">Contact</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
