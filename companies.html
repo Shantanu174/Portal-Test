@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Deep-dive into hiring processes, exam patterns, syllabus, and eligibility for 200+ top tech companies on Job Portal.">
-  <title>Companies Hiring Process — Job Portal</title>
+  <meta name="description"
+    content="Deep-dive into hiring processes, exam patterns, syllabus, and eligibility for 200+ top tech companies on Job Portal.">
+  <title>Companies firing Process — Job Portal</title>
   <script>
-    (function(){
+    (function () {
       const t = localStorage.getItem('portal_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       document.documentElement.setAttribute('data-theme', t);
     })();
@@ -14,6 +16,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="companies.css">
 </head>
+
 <body>
   <div class="bg-grid"></div>
   <div class="bg-blur-1"></div>
@@ -21,7 +24,9 @@
 
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo"><div class="logo-icon">💼</div><span>Job Portal</span></a>
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">💼</div><span>Job Portal</span>
+      </a>
       <ul class="nav-links">
         <li><a href="index.html">🏠 Home</a></li>
         <li><a href="jobs.html">💼 Jobs</a></li>
@@ -35,15 +40,18 @@
           <span class="theme-toggle-text">Dark</span>
         </button>
         <button class="btn btn-secondary btn-sm" onclick="showToast('Sign In coming soon!','info')">Sign In</button>
-        <button class="btn btn-primary btn-sm" onclick="showToast('Registration coming soon!','info')">Get Started</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Registration coming soon!','info')">Get
+          Started</button>
       </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">🏠 Home</a><a href="jobs.html">💼 Jobs</a>
-    <a href="preparation.html">📚 Preparation</a><a href="companies.html">🏢 Companies</a><a href="dsa-sheet.html">🧩 DSA Sheet</a>
-    <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
+    <a href="preparation.html">📚 Preparation</a><a href="companies.html">🏢 Companies</a><a href="dsa-sheet.html">🧩
+      DSA Sheet</a>
+    <div
+      style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
       <span style="color:var(--text-secondary);font-size:0.875rem;font-weight:500;">Appearance</span>
       <button class="theme-toggle" aria-label="Toggle theme">
         <span class="theme-toggle-icon">🌙</span>
@@ -57,7 +65,8 @@
       <div class="container">
         <div class="section-label">🏢 Company Profiles</div>
         <h1 class="section-title">Crack Any <span class="highlight">Company Interview</span></h1>
-        <p class="section-subtitle">Detailed hiring process, exam patterns, syllabus, eligibility criteria, and insider tips for 200+ top companies.</p>
+        <p class="section-subtitle">Detailed hiring process, exam patterns, syllabus, eligibility criteria, and insider
+          tips for 200+ top companies.</p>
         <div class="companies-search-row mt-6">
           <div class="search-bar" style="flex:1;max-width:500px;">
             <span class="search-icon">🔍</span>
@@ -102,4 +111,5 @@
   <script src="app.js"></script>
   <script src="companies.js"></script>
 </body>
+
 </html>
