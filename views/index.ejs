@@ -1,0 +1,170 @@
+<%- include('partials/header', { pageCss: 'index.css' }) %>
+
+  <main class="page-wrapper">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <!-- Floating Status Badges -->
+        <div class="floating-card fc-1 animate-float">
+          <div class="fc-icon">🎯</div>
+          <div>
+            <div style="font-weight:700;font-size:0.8rem;color:var(--text-primary);">Google SWE</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">₹45 LPA · Remote</div>
+          </div>
+        </div>
+        <div class="floating-card fc-2 animate-float" style="animation-delay:1.5s;">
+          <div class="fc-icon" style="background:var(--gradient-teal);">✅</div>
+          <div>
+            <div style="font-weight:700;font-size:0.8rem;color:var(--text-primary);">Problem Solved!</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">Binary Search · Easy</div>
+          </div>
+        </div>
+        <div class="floating-card fc-3 animate-float" style="animation-delay:0.8s;">
+          <div class="fc-icon" style="background:var(--gradient-secondary);">🏆</div>
+          <div>
+            <div style="font-weight:700;font-size:0.8rem;color:var(--text-primary);">Interview Cleared!</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">Amazon · Round 3</div>
+          </div>
+        </div>
+
+        <div class="hero-badge">✨ Your Ultimate Career Launchpad</div>
+        <h1 class="hero-title">
+          Land Your Dream Job<br>
+          <span class="gradient-text">Faster Than Ever</span>
+        </h1>
+        <p class="hero-subtitle">
+          All-in-one platform for job discovery, DSA practice, aptitude training, HR guidance, and company-specific hiring insights — powered by Node.js.
+        </p>
+
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="/jobs" class="btn btn-primary btn-lg">💼 Browse Jobs →</a>
+          <a href="/dsa-sheet" class="btn btn-secondary btn-lg">🧩 Start DSA Sheet</a>
+        </div>
+
+        <!-- HERO STATS -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Jobs Listed</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">450+</div>
+            <div class="stat-label">DSA Problems</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE OFFER -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-8">
+          <div class="section-label">What We Offer</div>
+          <h2 class="section-title">Everything You Need to <span class="highlight">Succeed</span></h2>
+          <p class="section-subtitle" style="margin:0 auto;">From job discovery to interview prep — Job Portal has all the tools to help you land your dream role.</p>
+        </div>
+
+        <div class="features-grid">
+          <a href="/jobs" class="feature-card">
+            <div class="feature-icon" style="background:var(--gradient-primary);">💼</div>
+            <h3>Job Portal</h3>
+            <p>Browse 50,000+ curated jobs from top tech companies. Filter by role, skills, location, and salary.</p>
+            <div class="feature-tags">
+              <span class="tag">Full-time</span>
+              <span class="tag">Remote</span>
+              <span class="tag">Internship</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <a href="/preparation" class="feature-card">
+            <div class="feature-icon" style="background:var(--gradient-teal);">📚</div>
+            <h3>Interview Prep</h3>
+            <p>Comprehensive notes and practice problems for Aptitude, DSA, Technical, and HR rounds with expert explanations.</p>
+            <div class="feature-tags">
+              <span class="tag">Aptitude</span>
+              <span class="tag">DSA</span>
+              <span class="tag">HR</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <a href="/companies" class="feature-card">
+            <div class="feature-icon" style="background:var(--gradient-secondary);">🏢</div>
+            <h3>Company Profiles</h3>
+            <p>Deep dive into hiring processes, exam patterns, syllabi, and eligibility criteria for 200+ top tech companies.</p>
+            <div class="feature-tags">
+              <span class="tag">Process</span>
+              <span class="tag">Syllabus</span>
+              <span class="tag">Pattern</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+
+          <a href="/dsa-sheet" class="feature-card">
+            <div class="feature-icon" style="background:linear-gradient(135deg,#ff9f43,#ff6584);">🧩</div>
+            <h3>DSA Sheet</h3>
+            <p>450+ handpicked DSA problems organized topic-wise. Track your progress with a structured learning path.</p>
+            <div class="feature-tags">
+              <span class="tag">450+ Qs</span>
+              <span class="tag">Topic-wise</span>
+              <span class="tag">Tracker</span>
+            </div>
+            <div class="feature-arrow">→</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED JOBS SECTION -->
+    <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <div class="section-label">Latest Openings</div>
+            <h2 class="section-title">Featured <span class="highlight">Job Roles</span></h2>
+            <p class="section-subtitle">Verified opportunities at leading tech organizations</p>
+          </div>
+          <a href="/jobs" class="btn btn-secondary">View All 50,000+ Jobs →</a>
+        </div>
+
+        <div class="featured-jobs">
+          <% featuredJobs.forEach(job => { %>
+            <div class="job-card" onclick="window.location.href='/jobs'">
+              <div class="job-card-header">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div class="company-logo-sm" style="background:<%= job.bg %>20;border-color:<%= job.bg %>40;"><%= job.logo %></div>
+                  <div>
+                    <div class="job-title"><%= job.title %></div>
+                    <div class="company-name-sm"><%= job.company %> · <span style="color:var(--accent-teal);"><%= job.mode %></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="job-tags">
+                <% job.tags.forEach(tag => { %>
+                  <span class="tag"><%= tag %></span>
+                <% }); %>
+              </div>
+              <div class="job-footer">
+                <div class="salary"><%= job.salaryText %></div>
+                <div class="location-sm">📍 <%= job.location %></div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<%- include('partials/footer', { pageJs: 'index.js' }) %>

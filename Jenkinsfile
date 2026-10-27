@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = 'job-prep-portal'
+        APP_NAME = 'job-prep-portal-nodejs'
     }
 
     stages {
@@ -13,34 +13,47 @@ pipeline {
             }
         }
 
-        stage('Code Validation & Lint') {
+        stage('Verify Node Environment & Files') {
             steps {
-                echo 'Verifying core project files...'
+                echo 'Verifying Node.js and project integrity...'
                 script {
                     if (isUnix()) {
                         sh '''
-                            echo "Checking required files..."
-                            test -f index.html || exit 1
-                            test -f jobs.html || exit 1
-                            test -f preparation.html || exit 1
-                            test -f companies.html || exit 1
-                            test -f dsa-sheet.html || exit 1
-                            test -f styles.css || exit 1
-                            test -f app.js || exit 1
-                            echo "All files verified!"
+                            echo "Checking node version..."
+                            node -v || true
+                            test -f server.js || exit 1
+                            test -f package.json || exit 1
+                            test -f views/index.ejs || exit 1
+                            test -f views/jobs.ejs || exit 1
+                            test -f public/css/styles.css || exit 1
+                            test -f public/js/app.js || exit 1
+                            echo "All core Node.js files verified!"
                         '''
                     } else {
                         bat '''
-                            echo Checking required files...
-                            if not exist index.html exit /b 1
-                            if not exist jobs.html exit /b 1
-                            if not exist preparation.html exit /b 1
-                            if not exist companies.html exit /b 1
-                            if not exist dsa-sheet.html exit /b 1
-                            if not exist styles.css exit /b 1
-                            if not exist app.js exit /b 1
-                            echo All files verified!
+                            echo Checking node version...
+                            node -v
+                            if not exist server.js exit /b 1
+                            if not exist package.json exit /b 1
+                            if not exist views\\index.ejs exit /b 1
+                            if not exist views\\jobs.ejs exit /b 1
+                            if not exist public\\css\\styles.css exit /b 1
+                            if not exist public\\js\\app.js exit /b 1
+                            echo All core Node.js files verified!
                         '''
+                    }
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing npm dependencies...'
+                script {
+                    if (isUnix()) {
+                        sh 'npm install --production'
+                    } else {
+                        bat 'npm install --production'
                     }
                 }
             }
@@ -48,16 +61,16 @@ pipeline {
 
         stage('Archive Artifacts') {
             steps {
-                echo 'Archiving web assets for build history...'
-                archiveArtifacts artifacts: '*.html, *.css, *.js, *.json, *.md', fingerprint: true
+                echo 'Archiving application files for build history...'
+                archiveArtifacts artifacts: 'server.js, package.json, views/**, public/**, data/**', fingerprint: true
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying Job Portal application...'
-                // If deploying to an Nginx / Apache server, uncomment:
-                // sh 'cp -r *.html *.css *.js /var/www/html/'
+                echo 'Application ready for deployment (Docker, PM2, or Cloud)...'
+                // Example for PM2 process manager:
+                // sh 'pm2 restart server.js || pm2 start server.js --name "job-portal"'
             }
         }
     }
@@ -67,10 +80,10 @@ pipeline {
             echo "Build #${env.BUILD_NUMBER} completed with status: ${currentBuild.currentResult}"
         }
         success {
-            echo '✅ Pipeline executed successfully!'
+            echo '✅ Node.js Job Portal Pipeline completed successfully!'
         }
         failure {
-            echo '❌ Pipeline failed! Check console output for details.'
+            echo '❌ Pipeline failed! Please check console output.'
         }
     }
 }

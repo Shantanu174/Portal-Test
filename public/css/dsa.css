@@ -1,0 +1,71 @@
+.dsa-header {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(108,99,255,0.05) 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 3rem 0 2rem;
+}
+.dsa-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.dsa-progress-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.progress-ring-bg { fill: none; stroke: var(--border-color); stroke-width: 10; }
+.progress-ring-fill {
+  fill: none;
+  stroke: url(#progressGradient);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress-center { position: absolute; text-align: center; }
+.progress-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.progress-total { font-size: 0.875rem; color: var(--text-muted); }
+.progress-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* MINI STATS */
+.dsa-mini-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 1.5rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1rem 1.5rem;
+  max-width: 500px;
+}
+.mini-stat { display: flex; flex-direction: column; align-items: center; padding: 0 1.5rem; gap: 2px; }
+.mini-stat-val { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+.mini-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.mini-stat-div { width: 1px; height: 30px; background: var(--border-color); }
+
+/* CONTROLS BAR */
+.dsa-controls-bar {
+  position: sticky;
+  top: var(--nav-height);
+  background: var(--navbar-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 100;
+  padding: 0.75rem 0;
+}
+.dsa-controls { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.dsa-main { padding-top: 2rem; padding-bottom: 4rem; }

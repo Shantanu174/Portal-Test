@@ -1,0 +1,133 @@
+<%- include('partials/header', { pageCss: 'jobs.css' }) %>
+
+  <main class="page-wrapper">
+    <!-- PAGE HEADER -->
+    <div class="jobs-header">
+      <div class="container">
+        <div class="jobs-hero">
+          <div>
+            <div class="section-label">💼 Opportunities</div>
+            <h1 class="section-title">Find Your <span class="highlight">Dream Job</span></h1>
+            <p class="section-subtitle">Search through 50,000+ curated tech positions across top startups and Fortune 500 MNCs.</p>
+          </div>
+
+          <div class="jobs-search-box">
+            <div class="search-row">
+              <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="jobSearchInput" placeholder="Job title, keywords, or company...">
+              </div>
+              <div class="search-bar" style="max-width:240px;">
+                <span class="search-icon">📍</span>
+                <input type="text" id="locationInput" placeholder="Location or Remote">
+              </div>
+              <button class="btn btn-primary" id="searchBtn">Search Jobs</button>
+            </div>
+
+            <!-- QUICK FILTER CHIPS -->
+            <div class="filter-chips" id="filterChips">
+              <button class="chip active" data-filter="all">All Jobs (<%= jobs.length %>)</button>
+              <button class="chip" data-filter="full-time">Full-time</button>
+              <button class="chip" data-filter="internship">Internships</button>
+              <button class="chip" data-filter="fresher">Freshers</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container section">
+      <div class="jobs-layout">
+        <!-- SIDEBAR FILTERS -->
+        <aside class="jobs-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-title">
+              <span>Filters</span>
+              <button id="resetFiltersBtn" style="background:none;border:none;color:var(--accent-primary);cursor:pointer;font-size:0.8rem;">Reset</button>
+            </div>
+
+            <div class="filter-section">
+              <div class="filter-label">Experience Level</div>
+              <select class="filter-select" id="expFilter">
+                <option value="all">All Experience</option>
+                <option value="fresher">Fresher (0–1 yr)</option>
+                <option value="mid">Mid-level (2–5 yrs)</option>
+                <option value="senior">Senior (5+ yrs)</option>
+              </select>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="filter-section">
+              <div class="filter-label">Company Type</div>
+              <select class="filter-select" id="companyTypeFilter">
+                <option value="all">All Types</option>
+                <option value="mnc">MNC / Tech Giant</option>
+                <option value="product">Product / Unicorn</option>
+                <option value="service">IT Services</option>
+                <option value="fintech">Fintech</option>
+              </select>
+            </div>
+          </div>
+        </aside>
+
+        <!-- JOB LISTINGS -->
+        <div class="jobs-content">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div style="color:var(--text-secondary);font-size:0.9rem;">
+              Showing <span style="color:var(--text-primary);font-weight:700;" id="jobCount"><%= jobs.length %></span> opportunities
+            </div>
+          </div>
+
+          <div class="job-list" id="jobsGrid">
+            <% jobs.forEach(job => { %>
+              <div class="job-card-full" data-id="<%= job.id %>" data-type="<%= job.type %>" data-company="<%= job.company.toLowerCase() %>" data-title="<%= job.title.toLowerCase() %>">
+                <div class="job-card-main">
+                  <div class="company-logo-med" style="background:<%= job.bg %>20;border-color:<%= job.bg %>40;"><%= job.logo %></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                      <h3 class="job-role-title"><%= job.title %></h3>
+                      <% if (job.isNew) { %>
+                        <span class="badge badge-teal">NEW</span>
+                      <% } %>
+                    </div>
+                    <div class="company-info-row">
+                      <span class="company-name"><%= job.company %></span>
+                      <span>·</span>
+                      <span>📍 <%= job.location %> (<%= job.mode %>)</span>
+                      <span>·</span>
+                      <span>🕒 <%= job.posted %></span>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:0.875rem;margin:8px 0;"><%= job.desc %></p>
+                    <div class="job-tags">
+                      <% job.tags.forEach(t => { %>
+                        <span class="tag"><%= t %></span>
+                      <% }); %>
+                    </div>
+                  </div>
+                </div>
+                <div class="job-card-actions">
+                  <div class="salary-lg"><%= job.salaryText %></div>
+                  <button class="btn btn-primary btn-sm view-details-btn" onclick="openJobModal(<%= job.id %>)">View Details</button>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JOB DETAIL MODAL -->
+  <div class="modal-overlay" id="jobModal">
+    <div class="modal" id="modalInner">
+      <div id="modalBody"></div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:flex-end;">
+        <button class="btn btn-secondary" onclick="closeJobModal()">Close</button>
+        <button class="btn btn-primary" onclick="showToast('Application submitted successfully!','success'); closeJobModal();">Apply Now</button>
+      </div>
+    </div>
+  </div>
+
+<%- include('partials/footer', { pageJs: 'jobs.js' }) %>

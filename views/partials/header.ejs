@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Job Portal - Your all-in-one platform for job opportunities, interview preparation, DSA sheets, and company hiring guides.">
+  <title><%= title %></title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('portal_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <% if (typeof pageCss !== 'undefined') { %>
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+  <% } %>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-blur-1"></div>
+  <div class="bg-blur-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">💼</div>
+        <span>Job Portal</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">🏠 Home</a></li>
+        <li><a href="/jobs" class="<%= activePage === 'jobs' ? 'active' : '' %>">💼 Jobs</a></li>
+        <li><a href="/preparation" class="<%= activePage === 'preparation' ? 'active' : '' %>">📚 Preparation</a></li>
+        <li><a href="/companies" class="<%= activePage === 'companies' ? 'active' : '' %>">🏢 Companies</a></li>
+        <li><a href="/dsa-sheet" class="<%= activePage === 'dsa-sheet' ? 'active' : '' %>">🧩 DSA Sheet</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <span class="theme-toggle-icon">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Sign In feature coming soon!','info')">Sign In</button>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Registration feature coming soon!','info')">Get Started</button>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">🏠 Home</a>
+    <a href="/jobs" class="<%= activePage === 'jobs' ? 'active' : '' %>">💼 Jobs</a>
+    <a href="/preparation" class="<%= activePage === 'preparation' ? 'active' : '' %>">📚 Preparation</a>
+    <a href="/companies" class="<%= activePage === 'companies' ? 'active' : '' %>">🏢 Companies</a>
+    <a href="/dsa-sheet" class="<%= activePage === 'dsa-sheet' ? 'active' : '' %>">🧩 DSA Sheet</a>
+    <div style="padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); margin-top: 4px;">
+      <span style="color:var(--text-secondary);font-size:0.875rem;font-weight:500;">Appearance</span>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-toggle-icon">🌙</span>
+        <span class="theme-toggle-text">Dark</span>
+      </button>
+    </div>
+  </div>

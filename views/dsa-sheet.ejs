@@ -1,0 +1,125 @@
+<%- include('partials/header', { pageCss: 'dsa.css' }) %>
+
+  <main class="page-wrapper">
+    <div class="dsa-header">
+      <div class="container">
+        <div class="dsa-hero">
+          <div>
+            <div class="section-label">🧩 DSA Sheet</div>
+            <h1 class="section-title">Topic-wise <span class="highlight">DSA Practice Sheet</span></h1>
+            <p class="section-subtitle">Curated problems from LeetCode, GFG & Codeforces — organized by topic for systematic interview preparation.</p>
+
+            <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <button class="btn btn-primary btn-sm" id="resetProgressBtn">🔄 Reset Progress</button>
+            </div>
+
+            <!-- MINI STATS -->
+            <div class="dsa-mini-stats">
+              <div class="mini-stat">
+                <div class="mini-stat-val" style="color:var(--accent-green);" id="easySolvedCount">0</div>
+                <div class="mini-stat-label">Easy</div>
+              </div>
+              <div class="mini-stat-div"></div>
+              <div class="mini-stat">
+                <div class="mini-stat-val" style="color:var(--accent-orange);" id="medSolvedCount">0</div>
+                <div class="mini-stat-label">Medium</div>
+              </div>
+              <div class="mini-stat-div"></div>
+              <div class="mini-stat">
+                <div class="mini-stat-val" style="color:var(--accent-pink);" id="hardSolvedCount">0</div>
+                <div class="mini-stat-label">Hard</div>
+              </div>
+              <div class="mini-stat-div"></div>
+              <div class="mini-stat">
+                <div class="mini-stat-val" style="color:var(--accent-primary);" id="totalPercent">0%</div>
+                <div class="mini-stat-label">Complete</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CIRCULAR PROGRESS -->
+          <div class="dsa-progress-circle">
+            <svg width="180" height="180" viewBox="0 0 180 180">
+              <defs>
+                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#6c63ff" />
+                  <stop offset="100%" stop-color="#00d4aa" />
+                </linearGradient>
+              </defs>
+              <circle class="progress-ring-bg" cx="90" cy="90" r="75" />
+              <circle class="progress-ring-fill" id="progressRing" cx="90" cy="90" r="75"
+                stroke-dasharray="471.24" stroke-dashoffset="471.24" />
+            </svg>
+            <div class="progress-center">
+              <div class="progress-num" id="solvedTotal">0</div>
+              <div class="progress-total">/ <span id="totalQuestions">0</span></div>
+              <div class="progress-label">Solved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="dsa-controls-bar">
+      <div class="container dsa-controls">
+        <div class="search-bar" style="max-width:320px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="dsaSearchInput" placeholder="Search problems or tags...">
+        </div>
+        <div class="filter-chips" id="dsaFilterChips">
+          <button class="chip active" data-difficulty="all">All</button>
+          <button class="chip" data-difficulty="Easy">🟢 Easy</button>
+          <button class="chip" data-difficulty="Medium">🟡 Medium</button>
+          <button class="chip" data-difficulty="Hard">🔴 Hard</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PROBLEMS LIST -->
+    <div class="container dsa-main">
+      <div id="topicAccordion">
+        <% dsaSheet.forEach(topic => { %>
+          <div class="topic-section card mb-6" data-topic="<%= topic.id %>">
+            <div class="topic-header" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding-bottom:1rem;border-bottom:1px solid var(--border-color);margin-bottom:1rem;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:1.5rem;"><%= topic.icon %></span>
+                <div>
+                  <h3 style="font-size:1.15rem;font-weight:700;"><%= topic.name %></h3>
+                  <div style="font-size:0.8rem;color:var(--text-muted);"><%= topic.problems.length %> problems</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="problem-table">
+              <% topic.problems.forEach(p => { %>
+                <div class="problem-row" data-id="<%= p.id %>" data-difficulty="<%= p.difficulty %>" data-name="<%= p.name.toLowerCase() %>" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--bg-glass);">
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <label class="custom-checkbox">
+                      <input type="checkbox" class="problem-checkbox" data-id="<%= p.id %>" data-difficulty="<%= p.difficulty %>">
+                      <div class="checkbox-box"></div>
+                    </label>
+                    <a href="<%= p.link %>" target="_blank" rel="noopener" style="color:var(--text-primary);text-decoration:none;font-weight:600;font-size:0.9rem;">
+                      <%= p.name %> ↗
+                    </a>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <% if (p.difficulty === 'Easy') { %>
+                      <span class="badge badge-easy">Easy</span>
+                    <% } else if (p.difficulty === 'Medium') { %>
+                      <span class="badge badge-medium">Medium</span>
+                    <% } else { %>
+                      <span class="badge badge-hard">Hard</span>
+                    <% } %>
+                    <span style="font-size:0.85rem;"><%= p.companies.join(' ') %></span>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </main>
+
+<%- include('partials/footer', { pageJs: 'dsa.js' }) %>
