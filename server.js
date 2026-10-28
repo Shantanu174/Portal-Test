@@ -149,11 +149,16 @@ app.use((req, res) => {
   });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`🚀 Job Portal Node.js Server is running!`);
-  console.log(`📡 Local URL: http://localhost:${PORT}`);
-  console.log(`🔌 REST API:  http://localhost:${PORT}/api/jobs`);
-  console.log(`======================================================\n`);
-});
+// Start Server (only when running locally, not on Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`🚀 Job Portal Node.js Server is running!`);
+    console.log(`📡 Local URL: http://localhost:${PORT}`);
+    console.log(`🔌 REST API:  http://localhost:${PORT}/api/jobs`);
+    console.log(`======================================================\n`);
+  });
+}
+
+// Export Express app for Vercel serverless deployment
+module.exports = app;
