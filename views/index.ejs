@@ -33,12 +33,13 @@
           <span class="gradient-text">Faster Than Ever</span>
         </h1>
         <p class="hero-subtitle">
-          All-in-one platform for job discovery, DSA practice, aptitude training, HR guidance, and company-specific hiring insights — powered by Node.js.
+          All-in-one platform for job discovery, DSA practice, aptitude training, HR guidance, and company-specific
+          hiring insights — powered by Node.js.
         </p>
 
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
           <a href="/jobs" class="btn btn-primary btn-lg">💼 Browse Jobs →</a>
-          <a href="/dsa-sheet" class="btn btn-secondary btn-lg">🧩 Start DSA Sheet</a>
+          <a href="/dsa-sheet" class="btn btn-secondary btn-lg">🧩 Start DSA Sheet1</a>
         </div>
 
         <!-- HERO STATS -->
@@ -72,7 +73,8 @@
         <div class="text-center mb-8">
           <div class="section-label">What We Offer</div>
           <h2 class="section-title">Everything You Need to <span class="highlight">Succeed</span></h2>
-          <p class="section-subtitle" style="margin:0 auto;">From job discovery to interview prep — Job Portal has all the tools to help you land your dream role.</p>
+          <p class="section-subtitle" style="margin:0 auto;">From job discovery to interview prep — Job Portal has all
+            the tools to help you land your dream role.</p>
         </div>
 
         <div class="features-grid">
@@ -91,7 +93,8 @@
           <a href="/preparation" class="feature-card">
             <div class="feature-icon" style="background:var(--gradient-teal);">📚</div>
             <h3>Interview Prep</h3>
-            <p>Comprehensive notes and practice problems for Aptitude, DSA, Technical, and HR rounds with expert explanations.</p>
+            <p>Comprehensive notes and practice problems for Aptitude, DSA, Technical, and HR rounds with expert
+              explanations.</p>
             <div class="feature-tags">
               <span class="tag">Aptitude</span>
               <span class="tag">DSA</span>
@@ -103,7 +106,8 @@
           <a href="/companies" class="feature-card">
             <div class="feature-icon" style="background:var(--gradient-secondary);">🏢</div>
             <h3>Company Profiles</h3>
-            <p>Deep dive into hiring processes, exam patterns, syllabi, and eligibility criteria for 200+ top tech companies.</p>
+            <p>Deep dive into hiring processes, exam patterns, syllabi, and eligibility criteria for 200+ top tech
+              companies.</p>
             <div class="feature-tags">
               <span class="tag">Process</span>
               <span class="tag">Syllabus</span>
@@ -115,7 +119,8 @@
           <a href="/dsa-sheet" class="feature-card">
             <div class="feature-icon" style="background:linear-gradient(135deg,#ff9f43,#ff6584);">🧩</div>
             <h3>DSA Sheet</h3>
-            <p>450+ handpicked DSA problems organized topic-wise. Track your progress with a structured learning path.</p>
+            <p>450+ handpicked DSA problems organized topic-wise. Track your progress with a structured learning path.
+            </p>
             <div class="feature-tags">
               <span class="tag">450+ Qs</span>
               <span class="tag">Topic-wise</span>
@@ -128,9 +133,11 @@
     </section>
 
     <!-- FEATURED JOBS SECTION -->
-    <section class="section" style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+    <section class="section"
+      style="background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
       <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
+        <div
+          style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
           <div>
             <div class="section-label">Latest Openings</div>
             <h2 class="section-title">Featured <span class="highlight">Job Roles</span></h2>
@@ -140,31 +147,44 @@
         </div>
 
         <div class="featured-jobs">
-          <% featuredJobs.forEach(job => { %>
+          <% featuredJobs.forEach(job=> { %>
             <div class="job-card" onclick="window.location.href='/jobs'">
               <div class="job-card-header">
                 <div style="display:flex;align-items:center;gap:12px;">
-                  <div class="company-logo-sm" style="background:<%= job.bg %>20;border-color:<%= job.bg %>40;"><%= job.logo %></div>
+                  <div class="company-logo-sm" style="background:<%= job.bg %>20;border-color:<%= job.bg %>40;">
+                    <%= job.logo %>
+                  </div>
                   <div>
-                    <div class="job-title"><%= job.title %></div>
-                    <div class="company-name-sm"><%= job.company %> · <span style="color:var(--accent-teal);"><%= job.mode %></span></div>
+                    <div class="job-title">
+                      <%= job.title %>
+                    </div>
+                    <div class="company-name-sm">
+                      <%= job.company %> · <span style="color:var(--accent-teal);">
+                          <%= job.mode %>
+                        </span>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="job-tags">
-                <% job.tags.forEach(tag => { %>
-                  <span class="tag"><%= tag %></span>
-                <% }); %>
+                <% job.tags.forEach(tag=> { %>
+                  <span class="tag">
+                    <%= tag %>
+                  </span>
+                  <% }); %>
               </div>
               <div class="job-footer">
-                <div class="salary"><%= job.salaryText %></div>
-                <div class="location-sm">📍 <%= job.location %></div>
+                <div class="salary">
+                  <%= job.salaryText %>
+                </div>
+                <div class="location-sm">📍 <%= job.location %>
+                </div>
               </div>
             </div>
-          <% }); %>
+            <% }); %>
         </div>
       </div>
     </section>
   </main>
 
-<%- include('partials/footer', { pageJs: 'index.js' }) %>
+  <%- include('partials/footer', { pageJs: 'index.js' }) %>
